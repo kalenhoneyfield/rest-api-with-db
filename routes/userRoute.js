@@ -48,6 +48,7 @@ router.post(
     // const errorMessages = errors.array().map((error) => error.msg);
     // console.log(errors.isEmpty());
     // console.log(errorMessages);
+    console.log(req.body);
     res.location('/');
     res.status(201).end();
   })
