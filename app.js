@@ -4,6 +4,21 @@
 const express = require('express');
 const morgan = require('morgan');
 
+//verify that we can connect to the DB
+const db = require('./models');
+(async () => {
+  try {
+    console.log(`Attempting to connect to the database...`);
+    await db.sequelize.authenticate().then(() => console.log('Connection Established'));
+  } catch (err) {
+    console.log(`It looks like there was an error connecting to the database: ${err.message}`);
+  }
+})();
+
+//pull in routes
+const userRoute = require('./routes/userRoute');
+const courseRoute = require('./routes/courseRoute');
+
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
 
@@ -21,6 +36,9 @@ app.get('/', (req, res) => {
     message: 'Welcome to the REST API project!',
   });
 });
+
+app.use('/api/users', userRoute);
+app.use('/api/courses', courseRoute);
 
 // send 404 if no other route matched
 app.use((req, res) => {
