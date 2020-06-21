@@ -11,6 +11,12 @@
       "lastName": "Jones",
       "emailAddress": "sally@jones.com",
       "password": "sallypassword"
+    },
+    {
+      "firstName": "Kalen",
+      "lastName": "Honeyfield",
+      "emailAddress": "probablyNotReal@email.com",
+      "password": "kalenpassword"
     }
   ],
   "courses": [
@@ -32,6 +38,13 @@
       "userId": 2,
       "title": "Learn How to Test Programs",
       "description": "In this course, you'll learn how to test programs."
+    },
+    {
+      "userId": 3,
+      "title": "Rustic Concrete Fish",
+      "description": "Persevering even-keeled contingency",
+      "estimatedTime": "forever",
+      "materialsNeeded": "Billions of pounds of Fish"
     }
   ]
 }

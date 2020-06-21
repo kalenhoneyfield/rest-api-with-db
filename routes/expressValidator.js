@@ -3,6 +3,9 @@
 
 const { body, validationResult } = require('express-validator');
 
+//We will use sequelize for additional validation
+//these rules are to ensure that fields can't be null, aren't handed null
+
 const userRules = () => {
   return [
     // firstName must exist
@@ -40,6 +43,11 @@ const courseRules = () => {
   ];
 };
 
+/**
+ * validate sends a 400 level error if a validation error has occured,
+ * it packs up the errors before sending them
+ * if no error exists, just move forward with a next()
+ */
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

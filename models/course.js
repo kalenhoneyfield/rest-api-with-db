@@ -25,10 +25,10 @@ module.exports = (sequelize) => {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      //   userId: {
-      //     type: Sequelize.INTEGER,
-      //     allowNull: true,
-      //   },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
     },
     {
       sequelize,
