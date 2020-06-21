@@ -34,10 +34,10 @@ npm run nodemon
 
 ## Treehouse Specific Meta
 
-The GET `/api/users` route filters out the password, created, and updated fields
-Both of the GET `/api/courses` routes filter out the created and updated fields
-The PUT and DELETE `/api/courses/:id` routes return a 403 error if the user currently signed in isn't the user that created the course
-The POST `/api/users` route validates that email address provided is both unique and is in a valid email address format
+- The GET `/api/users` route filters out the password, created, and updated fields
+- Both of the GET `/api/courses` routes filter out the created and updated fields
+- The PUT and DELETE `/api/courses/:id` routes return a 403 error if the user currently signed in isn't the user that created the course
+- The POST `/api/users` route validates that email address provided is both unique and is in a valid email address format
 
 ## Meta
 
