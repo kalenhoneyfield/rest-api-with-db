@@ -1,38 +1,46 @@
+# Rest API for school database
 
-# Full Stack JavaScript Techdegree v2 - REST API Project
+> A simple REST API interface for a school/online course database.
 
-## Overview of the Provided Project Files
+This tool facilitates adding/updating/removing/reviewing course data within the database. The tool provides two endpoints: `/api/users` and `/api/courses` to help with this.
 
-We've supplied the following files for you to use: 
+The users endpoint provides a POST route to add a new user to the system, and a GET route once you've logged in to allow you to review your own record.
 
-* The `seed` folder contains a starting set of data for your database in the form of a JSON file (`data.json`) and a collection of files (`context.js`, `database.js`, and `index.js`) that can be used to create your app's database and populate it with data (we'll explain how to do that below).
-* We've included a `.gitignore` file to ensure that the `node_modules` folder doesn't get pushed to your GitHub repo.
-* The `app.js` file configures Express to serve a simple REST API. We've also configured the `morgan` npm package to log HTTP requests/responses to the console. You'll update this file with the routes for the API. You'll update this file with the routes for the API.
-* The `nodemon.js` file configures the nodemon Node.js module, which we are using to run your REST API.
-* The `package.json` file (and the associated `package-lock.json` file) contain the project's npm configuration, which includes the project's dependencies.
-* The `RESTAPI.postman_collection.json` file is a collection of Postman requests that you can use to test and explore your REST API.
+The courses endpoint provides a GET route that will return all courses in the system, alternatively you make select a single course with `/api/courses/:id` where :id is the numerical id of the course. There is a POST route to which you may post a course. A PUT route to update a single course, and a DELETE route as well.
 
-## Getting Started
+![](header.png)
 
-To get up and running with this project, run the following commands from the root of the folder that contains this README file.
-
-First, install the project's dependencies using `npm`.
+## Installation
 
 ```
-npm install
-
-```
-
-Second, seed the SQLite database.
-
-```
-npm run seed
-```
-
-And lastly, start the application.
-
-```
+git clone https://github.com/kalenhoneyfield/rest-api-with-db.git
+cd ./rest-api-with-db
+npm install --production
+[npm run seed] This step is optional if you would like some example courses loaded into the database
 npm start
 ```
 
-To test the Express server, browse to the URL [http://localhost:5000/](http://localhost:5000/).
+## Development setup
+
+If you would like to work with this and develop it further, I might suggest the following. While not required it will setup the dependencies for VS Code, Prettier, ESLint, sequelize-cli, and nodemon.
+
+```
+git clone https://github.com/kalenhoneyfield/rest-api-with-db.git
+cd ./rest-api-with-db
+npm install
+[npm run seed] This step is optional if you would like some example courses loaded into the database
+npm run nodemon
+```
+
+## Treehouse Specific Meta
+
+The GET `/api/users` route filters out the password, created, and updated fields
+Both of the GET `/api/courses` routes filter out the created and updated fields
+The PUT and DELETE `/api/courses/:id` routes return a 403 error if the user currently signed in isn't the user that created the course
+The POST `/api/users` route validates that email address provided is both unique and is in a valid email address format
+
+## Meta
+
+Kalen Honeyfield – [@KHoneyfield](https://twitter.com/khoneyfield) – kalenhoneyfield@gmail.com
+
+[KalenHoneyfield@github](https://github.com/kalenhoneyfield/)
