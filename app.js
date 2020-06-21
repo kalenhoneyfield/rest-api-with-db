@@ -3,13 +3,17 @@
 // load modules
 const express = require('express');
 const morgan = require('morgan');
+const os = require('os'); //to get hostname
 
 //verify that we can connect to the DB
 const db = require('./models');
 (async () => {
   try {
     console.log(`Attempting to connect to the database...`);
-    await db.sequelize.authenticate().then(() => console.log('Connection Established'));
+    await db.sequelize.sync();
+    await db.sequelize
+      .authenticate()
+      .then(() => console.log('Connection to the database has been established'));
   } catch (err) {
     console.log(`It looks like there was an error connecting to the database: ${err.message}`);
   }
@@ -67,5 +71,5 @@ app.set('port', process.env.PORT || 5000);
 
 // start listening on our port
 const server = app.listen(app.get('port'), () => {
-  console.log(`Express server is listening on port ${server.address().port}`);
+  console.log(`Server running on ${os.hostname()}:${server.address().port}`);
 });

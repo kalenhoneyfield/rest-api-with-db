@@ -17,7 +17,7 @@ function asyncHandler(callback) {
     try {
       await callback(req, res, next);
     } catch (error) {
-      res.status(500).send(error);
+      next(error);
     }
   };
 }
@@ -53,7 +53,6 @@ router.post(
     const newUser = req.body;
     //hash the password
     newUser.password = bcryptjs.hashSync(newUser.password);
-    console.log(newUser.password);
     try {
       await User.create({
         firstName: newUser.firstName,

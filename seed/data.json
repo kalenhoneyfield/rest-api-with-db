@@ -45,6 +45,13 @@
       "description": "Persevering even-keeled contingency",
       "estimatedTime": "forever",
       "materialsNeeded": "Billions of pounds of Fish"
+    },
+    {
+      "userId": 3,
+      "title": "How to decode base64",
+      "description": "We're not cowboys or samurais for code. Even when you and I both know the syntax. This course will require a full commitment. You won't learn this from any other course.",
+      "estimatedTime": "19 centuries, eighty decades, and 7 years",
+      "materialsNeeded": "aHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj03LVlQWVVDOWJTNA=="
     }
   ]
 }

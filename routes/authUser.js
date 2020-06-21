@@ -1,7 +1,15 @@
+//pull in the required items to authenticate a user
 const User = require('../models').User;
 const bcryptjs = require('bcryptjs');
 const auth = require('basic-auth');
 
+/**
+ * using basic auth, check if we have any credentials to work with
+ * if we do, see if the emailAddress is on file
+ * if it is, compare the password provided with the one on file
+ * if they match, set a value to be used elsewhere in the chain
+ * if any steps fail provide a 401 access denied message
+ */
 const authenticateUser = async (req, res, next) => {
   const credentials = auth(req);
   let authMessage = null;

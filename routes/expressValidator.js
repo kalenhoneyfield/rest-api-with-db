@@ -44,7 +44,7 @@ const courseRules = () => {
 };
 
 /**
- * validate sends a 400 level error if a validation error has occured,
+ * validate sends a 400 level error if a validation error has occurred,
  * it packs up the errors before sending them
  * if no error exists, just move forward with a next()
  */

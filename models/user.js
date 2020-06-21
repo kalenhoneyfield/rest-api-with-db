@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
           is: {
             args: /^\$2[aby]?\$\d{1,2}\$[.\/A-Za-z0-9]{53}$/i,
             msg:
-              'You should only see this message if express failed to hash your password, please contact the site adminstrator ASAP',
+              'You should only see this message if express failed to hash your password, please contact the site administrator ASAP',
           },
         },
       },
