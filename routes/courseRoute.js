@@ -8,9 +8,6 @@ const { courseRules, validate } = require('./expressValidator');
 //pull in authUser.js
 const authUser = require('./authUser');
 
-const db = require('../models');
-const { Op } = db.Sequelize;
-
 //catch server side errors in one place
 function asyncHandler(callback) {
   return async (req, res, next) => {

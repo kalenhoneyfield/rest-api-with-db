@@ -8,8 +8,6 @@ The users endpoint provides a POST route to add a new user to the system, and a 
 
 The courses endpoint provides a GET route that will return all courses in the system, alternatively you make select a single course with `/api/courses/:id` where :id is the numerical id of the course. There is a POST route to which you may post a course. A PUT route to update a single course, and a DELETE route as well.
 
-![](header.png)
-
 ## Installation
 
 ```
