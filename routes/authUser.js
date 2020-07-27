@@ -2,15 +2,24 @@
 const User = require('../models').User;
 const bcryptjs = require('bcryptjs');
 const auth = require('basic-auth');
+const jwt = require('jsonwebtoken');
 
 /**
+ * using JWT to check if user is pre-authorized, if so,
+ * lets skip all the work listed below, otherwise, go through the steps below
+ *
  * using basic auth, check if we have any credentials to work with
  * if we do, see if the emailAddress is on file
  * if it is, compare the password provided with the one on file
  * if they match, set a value to be used elsewhere in the chain
  * if any steps fail provide a 401 access denied message
- */
+ **/
 const authenticateUser = async (req, res, next) => {
+  const token = await verifyToken(req);
+  if (token) {
+    req.currentUser = token.user;
+    return next();
+  }
   const credentials = auth(req);
   let authMessage = null;
   if (credentials) {
@@ -39,5 +48,31 @@ const authenticateUser = async (req, res, next) => {
     next();
   }
 };
+
+/**
+ * takes in the request splits out the auth header ans checks it it has a Bearer, if it does,
+ * it verifies the token
+ * return true is valid, false is not
+ */
+async function verifyToken(req) {
+  const authHeader = req.headers['authorization'];
+
+  if (typeof authHeader !== 'undefined') {
+    const authType = authHeader.split(' ');
+    // return authType === 'Bearer' ? true : false;
+
+    if (authType[0] === 'Bearer') {
+      let data = false;
+      await jwt.verify(authType[1], process.env.JWT_SECRET, (err, tokenData) => {
+        err ? (data = false) : (data = tokenData);
+      });
+      return data;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
 
 module.exports = authenticateUser;

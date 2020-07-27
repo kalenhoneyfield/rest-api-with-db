@@ -34,7 +34,7 @@ router.get(
         emailAddress: req.currentUser.emailAddress,
       },
     });
-    jwt.sign({ user }, 'bananas', (err, token) => {
+    jwt.sign({ user }, process.env.JWT_SECRET, (err, token) => {
       res.json({ user, token });
     });
   })

@@ -5,6 +5,7 @@ const express = require('express');
 const morgan = require('morgan');
 const os = require('os'); //to get hostname
 const cors = require('cors'); //to install cors
+const env = require('dotenv').config(); //pull in .env values
 
 //verify that we can connect to the DB
 const db = require('./models');
