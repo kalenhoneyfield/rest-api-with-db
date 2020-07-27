@@ -4,6 +4,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const os = require('os'); //to get hostname
+const cors = require('cors'); //to install cors
 
 //verify that we can connect to the DB
 const db = require('./models');
@@ -28,6 +29,13 @@ const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'tr
 
 // create the Express app
 const app = express();
+
+// Enable All CORS Requests
+//expose location header for the post course route to use
+const corsOptions = {
+  exposedHeaders: 'Location',
+};
+app.use(cors(corsOptions));
 
 // Setup request body JSON parsing.
 app.use(express.json());
