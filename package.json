@@ -33,6 +33,7 @@
     "cross-env": "^5.2.1",
     "express": "^4.17.1",
     "express-validator": "^6.6.0",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "promise.prototype.finally": "^3.1.2",
     "sequelize": "^5.22.3",

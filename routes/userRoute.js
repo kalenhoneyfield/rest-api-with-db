@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models').User;
 const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 //pull in the validation rule set
 const { userRules, validate } = require('./expressValidator');
@@ -33,7 +34,9 @@ router.get(
         emailAddress: req.currentUser.emailAddress,
       },
     });
-    res.json({ user });
+    jwt.sign({ user }, 'bananas', (err, token) => {
+      res.json({ user, token });
+    });
   })
 );
 
