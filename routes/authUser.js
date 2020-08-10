@@ -17,6 +17,12 @@ const jwt = require('jsonwebtoken');
 const authenticateUser = async (req, res, next) => {
   const token = await verifyToken(req);
   if (token) {
+    const user = await User.findOne({
+      where: {
+        emailAddress: token.user.emailAddress,
+      },
+    });
+    token.user.id = user.id;
     req.currentUser = token.user;
     return next();
   }
