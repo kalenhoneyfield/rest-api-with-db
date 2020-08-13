@@ -22,9 +22,11 @@ const authenticateUser = async (req, res, next) => {
         emailAddress: token.user.emailAddress,
       },
     });
-    token.user.id = user.id;
-    req.currentUser = token.user;
-    return next();
+    if (user) {
+      token.user.id = user.id;
+      req.currentUser = token.user;
+      return next();
+    }
   }
   const credentials = auth(req);
   let authMessage = null;
