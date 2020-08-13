@@ -4,6 +4,11 @@ const User = require('../models').User;
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+//set the secret to either an .env value or set it to a random value if no value exists
+const jwtSecret =
+  process.env.JWT_SECRET ||
+  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
 //pull in the validation rule set
 const { userRules, validate } = require('./expressValidator');
 //pull in authUser.js
@@ -34,7 +39,7 @@ router.get(
         emailAddress: req.currentUser.emailAddress,
       },
     });
-    jwt.sign({ user }, process.env.JWT_SECRET, (err, token) => {
+    jwt.sign({ user }, jwtSecret, (err, token) => {
       res.json({ user, token });
     });
   })
